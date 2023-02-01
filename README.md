@@ -5,9 +5,9 @@ Given a news title quote *T* and body quote *B*, we want to detect contextomized
 
 ## Data
 We prepared two datasets.
-1. To pre-train<br/>
+- To pre-train<br/>
 We construct 86,275 datasets consisting of title quotes, positive sentences, and negative sentences to train QuoteCSE model. Due to data size issues, only 200 samples were uploaded to this repository. 
-2. To downstream task detecting the contextomized quotes
+- To downstream task detecting the contextomized quotes
 <br/>we construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model. Label 1 means 'Contextomized', and label 0 means 'Modified'.<br/>
 Contextomized quote is a title quote that does not semantically match any quotes in the body text and distorts the speaker's intention.
 Modified quote is a title quote that is different in form but semantically matches quotes in the body text.
