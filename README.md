@@ -3,7 +3,7 @@
 ## Task: Contextomized Quote Detection
 Let a given news article be *X:(T, B)*, where *T* is the news title, and *B* is the body text. Our task is to predict a binary label *Y* indicating whether the headline quote in *T* is either modified or contextomized by referring to the body-text quotes.
 
-## QuoteCSE: A Jounalism-driven Contrastive Learning Framework
+## Method: QuoteCSE
 
 We present QuoteCSE, a contrastive learning framework that represents the embedding of news quotes. In addition, we implemented a classifier to classify whether the title quote *T* is contextomized or not using embedding obtained by QuoteCSE. 
 
