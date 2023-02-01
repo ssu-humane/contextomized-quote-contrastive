@@ -1,7 +1,13 @@
 # A Contrastive Learning Framework for Detecting Contextomized News Quotes (QuoteCSE)
 
-## Task
-Given a news title quote *T* and body quote *B*, we want to detect contextomized quote in news headlines.
+## Task: Contextomized Quote Detection
+Let a given news article be *X:(T, B)*, where *T* is the news title, and *B* is the body text. Our task is to predict a binary label *Y* indicating whether the headline quote in *T* is either modified or contextomized by referring to the body-text quotes.
+
+## QuoteCSE: A Jounalism-driven Contrastive Learning Framework
+
+We present QuoteCSE, a contrastive learning framework that represents the embedding of news quotes. In addition, we implemented a classifier to classify whether the title quote *T* is contextomized or not using embedding obtained by QuoteCSE. 
+
+(수정 필요: 1. QuoteCSE에 대한 설명 2. 그것이 어떻게 Contextomized quote detection에 사용되는지. 설명은 논문에 적혀 있음. 그림도 넣을 것)
 
 ## Data
 
@@ -26,10 +32,6 @@ Examples
 |"불필요한 모임 일절 자제"(Avoid unnecessary gatherings altogether)|"저도 백신을 맞고 해서 여름에 어디 여행이라도 한번 갈 계획을 했었는데..."(Since being vaccinated, I had planned to travel somewhere in the summer, but...) <br/> "어떤 행위는 금지하고 어떤 행위는 허용한다는 개념이 아니라 불필요한 모임과 약속, 외출을 일제 자제하고…."(It is not a matter of prohibiting or permitting specific activities, but of avoiding unnecessary gatherings, appointments, and going out altogether...)|Modified|
 
 
-## Model
-We present QuoteCSE, a contrastive learning framework that represents the embedding of news quotes. In addition, we implemented a classifier to classify whether the title quote *T* is contextomized or not using embedding obtained by QuoteCSE. It can be executed using the command below.
-
-
 ## Usage
 
 ### QuoteCSE pretraining
@@ -41,7 +43,7 @@ python train.py
 ```python
 python contextomized_quote_detection.py 
 ```
-
+(질문: QuoteCSE pretrained checkpoint를 제공하는지? 안 했다면 리포에 추가. HuggingFace Model Hub에도 올리기.)
 
 ## Reference
 
