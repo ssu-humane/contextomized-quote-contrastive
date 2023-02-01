@@ -15,8 +15,7 @@ We think that this dataset can also be uitilzed for other tasks to detect contex
 
 
 ## Model
-
-
+We present QuoteCSE, a contrastive learning framework that represents the embedding of news quotes. In addition, we implemented a classifier to classify whether the title quote *T* is contextomized or not using embedding obtained by QuoteCSE. It can be executed using the command below.
 
 
 ## Example Usage
