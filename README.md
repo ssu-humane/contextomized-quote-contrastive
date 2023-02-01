@@ -2,6 +2,7 @@
 
 ## Task
 Given a news title quote *T* and body quote *B*, we want to detect contextomized quote in news headlines.
+So, 
 
 ## Data
 We prepared two datasets.
