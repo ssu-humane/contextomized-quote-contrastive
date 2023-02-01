@@ -5,7 +5,7 @@
 Given a news title quote *T* and body quote *B*, we want to detect contextomized quote in news headlines.
 
 ## Data
-We construct 86,275 datasets consisting of *T*, *B*, and label.
+We construct 86,275 datasets consisting of *T*, *B*, positive sentence, and negative sentence.
 
 
 ## Example Usage
