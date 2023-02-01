@@ -9,6 +9,12 @@ We prepared two datasets.
 We construct 86,275 datasets consisting of title quotes, positive sentences, and negative sentences to train QuoteCSE model. Due to data size issues, only 200 samples were uploaded to this repository. 
 2. To downstream task detecting the contextomized quotes
 we construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model.
+Label 1 means 'Contextomized', and label 0 means 'Modified'. The table below is an example for each label.
+
+|title quote|body quotes|label|
+|------|---|---|
+|"A debt crisis, like Greece, is on the horizon"|"If we do not maintain our fiscal health, we may end up like Greece" <br/> "Wasted budgets should be reallocated to areas in need through the reconstruction of public expenditure"|Contextomized|
+|"Avoid unnecessary gatherings altogether"|"Since being vaccinated, I had planned to travel somewhere in the summer, but..." <br/> "Is is not a matter of prohibiting or permitting specific activities, but of avoiding unnecessary gatherings, appointments, and going out altogether..."|Modified|
 
 We think that this dataset can also be uitilized for other tasks to detect contextomized quotes.
 
