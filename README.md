@@ -1,14 +1,15 @@
-# QuoteCSE: detecting Contextomized quotes in News Headlines
+# A Contrastive Learning Framework for Detecting Contextomized News Quotes (QuoteCSE)
 
 ## Task
 Given a news title quote *T* and body quote *B*, we want to detect contextomized quote in news headlines.
 
 ## Data
-We prepared two datasets.
-1. Pre-train<br/>
-We construct 86,275 datasets consisting of title quotes, positive sentences, and negative sentences to train QuoteCSE model. Due to data size issues, only 200 samples were uploaded to this repository. <br/>
 
-2. Downstream task to detect the contextomized quotes
+### Pretraining corpus
+
+We present a sampled dataset of unlabeled corpus used for the QuoteCSE pretraining. Each data instance consists of title quote, positive sample, and negative sample. The positive and negative samples were selected by SentenceBERT, and the assignments are updated during training.
+
+### Manually annotated dataDownstream task to detect the contextomized quotes
 <br/>We construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model. Label 1 means 'Contextomized', and label 0 means 'Modified'.<br/>
 Contextomized quote is a title quote that does not semantically match any quotes in the body text and distorts the speaker's intention.
 Modified quote is a title quote that is different in form but semantically matches quotes in the body text.
@@ -27,7 +28,7 @@ We present QuoteCSE, a contrastive learning framework that represents the embedd
 
 
 ## Example Usage
-- Training QuoteCSE model with Contrastive Learning
+- QuoteCSE pretraining
 ```python
 python train.py 
 ```
