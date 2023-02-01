@@ -7,6 +7,9 @@ Given a news title quote *T* and body quote *B*, we want to detect contextomized
 
 ### Pretraining corpus
 
+```
+data/pretrain_data_sample.pkl
+```
 We present a sampled dataset of unlabeled corpus used for the QuoteCSE pretraining. Each data instance consists of title quote, positive sample, and negative sample. The positive and negative samples were selected by SentenceBERT, and the assignments are updated during training.
 
 ### Manually annotated dataDownstream task to detect the contextomized quotes
