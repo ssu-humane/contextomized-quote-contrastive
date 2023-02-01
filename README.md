@@ -9,7 +9,7 @@ We present QuoteCSE, a contrastive learning framework that represents the embedd
 
 (수정 필요: 1. QuoteCSE에 대한 설명 2. 그것이 어떻게 Contextomized quote detection에 사용되는지. 설명은 논문에 적혀 있음. 그림도 넣을 것)
 
-## Data
+## Datasets
 
 ### Pretraining corpus
 ```
