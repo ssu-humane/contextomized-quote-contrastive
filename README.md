@@ -9,7 +9,9 @@ We prepared two datasets.
 We construct 86,275 datasets consisting of title quotes, positive sentences, and negative sentences to train QuoteCSE model. Due to data size issues, only 200 samples were uploaded to this repository. 
 2. To downstream task detecting the contextomized quotes
 we construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model.<br/>
-Label 1 means 'Contextomized', and label 0 means 'Modified'. 
+Label 1 means 'Contextomized', and label 0 means 'Modified'.
+Contextomized quote is a title quote that does not semantically match any quotes in the body text and distorts the speaker's intention.
+Modified quote is a quote in a news headline that are different in form but semantically match to quotes in the body text.
 
 <br/> This table is an example for each label.
 |title quote|body quotes|label|
