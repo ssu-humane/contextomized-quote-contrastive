@@ -39,7 +39,7 @@ def main():
     parser.add_argument("--temperature", default=0.05, type=float, help="temperature")   
     
     parser.add_argument("--MODEL_DIR", default='./model/', type=str, help="where to save the trained model") 
-    parser.add_argument("--DATA_PATH", default='./data/df.pkl', type=str, help="data to pretrain")    
+    parser.add_argument("--DATA_PATH", default='./data/df.pkl', type=str, help="data for pretraining")    
 
     args = parser.parse_args()
 
