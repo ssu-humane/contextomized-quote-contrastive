@@ -8,8 +8,10 @@ We prepared two datasets.
 1. To pre-train
 We construct 86,275 datasets consisting of title quotes, positive sentences, and negative sentences to train QuoteCSE model. Due to data size issues, only 200 samples were uploaded to this repository. 
 2. To downstream task detecting the contextomized quotes
-we construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model.
-Label 1 means 'Contextomized', and label 0 means 'Modified'. The table below is an example for each label.
+we construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model.<br/>
+Label 1 means 'Contextomized', and label 0 means 'Modified'. 
+
+<br/><br/> This table is an example for each label.
 
 |title quote|body quotes|label|
 |------|---|---|
