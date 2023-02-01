@@ -4,18 +4,18 @@
 
 Given a news title quote *T* and body quote *B*, we want to detect contextomized quote in news headlines.
 
-## Evaluation data
+## Data
 
 
 
 ## Example Usage
 
-Training QuoteCSE model with Contrastive Learning
+- Training QuoteCSE model with Contrastive Learning
 ```python
 python train.py 
 ```
 
-Detecting contextomized quote to use QuoteCSE model
+- Detecting contextomized quote to use QuoteCSE model
 ```python
 python contextomized_quote_detection.py 
 ```
