@@ -17,7 +17,7 @@ Modified quote is a quote in a news headline that are different in form but sema
 |title quote|body quotes|label|
 |------|---|---|
 |"A debt crisis, like Greece, is on the horizon"|"If we do not maintain our fiscal health, we may end up like Greece" <br/> "Wasted budgets should be reallocated to areas in need through the reconstruction of public expenditure"|Contextomized|
-|"Avoid unnecessary gatherings altogether"|"Since being vaccinated, I had planned to travel somewhere in the summer, but..." <br/> "Is is not a matter of prohibiting or permitting specific activities, but of avoiding unnecessary gatherings, appointments, and going out altogether..."|Modified|
+|"Avoid unnecessary gatherings altogether"|"Since being vaccinated, I had planned to travel somewhere in the summer, but..." <br/> "It is not a matter of prohibiting or permitting specific activities, but of avoiding unnecessary gatherings, appointments, and going out altogether..."|Modified|
 
 We think that this dataset can also be uitilized for other tasks to detect contextomized quotes.
 
