@@ -27,23 +27,22 @@ def main():
     
     # arguments
     parser.add_argument("--seed", default=0, type=int, help="set seed") 
-    parser.add_argument("--split_seed", default=0, type=int, help="set seed") 
+    parser.add_argument("--split_seed", default=0, type=int, help="seed to split data") 
     parser.add_argument("--batch_size", default=4, type=int, help="batch size")    
     parser.add_argument("--max_len", default=512, type=int, help="max length")     
     parser.add_argument("--num_workers", default=16, type=int, help="number of workers")    
     parser.add_argument("--dimension_size", default=768, type=int, help="dimension size") 
     parser.add_argument("--hidden_size", default=100, type=int, help="hidden size")    
-    parser.add_argument("--classifier_input_size", default=100, type=int, help="input dimension size") 
-    parser.add_argument("--classifier_hidden_size", default=64, type=int, help="hidden size")     
+    parser.add_argument("--classifier_input_size", default=100, type=int, help="input dimension size of classifier") 
+    parser.add_argument("--classifier_hidden_size", default=64, type=int, help="hidden size of classifier")     
     parser.add_argument("--learning_rate", default=1e-2, type=float, help="learning rate") 
     parser.add_argument("--weight_decay", default=1e-5, type=float, help="weight decay")   
     parser.add_argument("--epochs", default=10, type=int, help="epoch")    
-    parser.add_argument("--schedule", default=True, type=bool, help="")    
+    parser.add_argument("--schedule", default=True, type=bool, help="whether to use the scheduler or not")    
     
-    parser.add_argument("--DATA_DIR", default='./data/contextomized_detection_data.pkl', type=str, help="data to dectect contextomized quote") 
-#    parser.add_argument("--MODEL_DIR", default='./model/QuoteCSE_model.bin', type=str, help="trained QuoteCSE model") 
-    parser.add_argument("--MODEL_DIR", default='./model/model_0.bin', type=str, help="trained QuoteCSE model") 
-    parser.add_argument("--MODEL_SAVE_DIR", default='./model/contextomized_detection/', type=str, help="trained QuoteCSE model")
+    parser.add_argument("--DATA_DIR", default='./data/contextomized_detection_data.pkl', type=str, help="data for detecting contextomized quote") 
+    parser.add_argument("--MODEL_DIR", default='./model/QuoteCSE_model.bin', type=str, help="trained QuoteCSE model")
+    parser.add_argument("--MODEL_SAVE_DIR", default='./model/contextomized_detection/', type=str, help="where to save the finetuned model")
     
     args = parser.parse_args()
 
