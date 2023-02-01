@@ -1,6 +1,7 @@
 from transformers import BertModel
 from kobert_tokenizer import KoBERTTokenizer
 
+from sklearn.model_selection import train_test_split
 from tqdm.auto import tqdm
 import torch.nn as nn
 import torch
@@ -10,7 +11,6 @@ import os
 import datetime
 
 from datasets import(
-    make_dataset,
     create_data_loader,
     tuplify_with_device,
 )
@@ -39,8 +39,7 @@ def main():
     parser.add_argument("--temperature", default=0.05, type=float, help="temperature")   
     
     parser.add_argument("--MODEL_DIR", default='./model/', type=str, help="where to save the trained model") 
-    parser.add_argument("--MODIFIED_DATA_PATH", default='./data/df_modified.pkl', type=str, help="modified data path")    
-    parser.add_argument("--CONTEXTOMIZED_DATA_PATH", default='./data/df_contextomized.pkl', type=str, help="contextomized data path")   
+    parser.add_argument("--DATA_PATH", default='./data/df.pkl', type=str, help="data to pretrain")    
 
     args = parser.parse_args()
 
@@ -66,8 +65,11 @@ def main():
     optimizer.zero_grad()
     
     print('Making Dataloader')
-    # make dataloader
-    train_df, valid_df, test_df = make_dataset(args)
+    df = pd.read_pickle(args.DATA_PATH)
+    
+    train_df, test_df = train_test_split(df, test_size=0.2, random_state=args.seed)
+    valid_df, test_df = train_test_split(test_df, test_size=0.5, random_state=args.seed)
+    
     train_data_loader = create_data_loader(args,
                                            df = train_df, 
                                            shuffle = True,
