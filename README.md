@@ -11,8 +11,7 @@ We construct 86,275 datasets consisting of title quotes, positive sentences, and
 we construct 1,600 datasets consisting of *T*, *B*, and labels to fine-tune the trained QuoteCSE model.<br/>
 Label 1 means 'Contextomized', and label 0 means 'Modified'. 
 
-<br/><br/> This table is an example for each label.
-
+<br/> This table is an example for each label.
 |title quote|body quotes|label|
 |------|---|---|
 |"A debt crisis, like Greece, is on the horizon"|"If we do not maintain our fiscal health, we may end up like Greece" <br/> "Wasted budgets should be reallocated to areas in need through the reconstruction of public expenditure"|Contextomized|
