@@ -22,7 +22,7 @@ We present a sampled dataset of unlabeled corpus used for the QuoteCSE pretraini
 data/contextomized_quote.pkl
 ```
 We introduce a dataset of 1,600 news articles for detecting contextomized news quotes.
-- Label 1: The headline quote is *contextomized*, which refers to the excerpt of words with semantic changes from the original statement
+- Label 1: The headline quote is *contextomized*, which refers to the excerpt of words with semantic changes from the original statement.
 - Label 0: The headline quote is *modified*. It keeps the semantics of original expression but it is a different phrase or sentence.
 
 Examples
