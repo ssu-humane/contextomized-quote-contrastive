@@ -7,8 +7,6 @@ Let a given news article be *X:(T, B)*, where *T* is the news title, and *B* is 
 
 We present QuoteCSE, a contrastive learning framework that represents the embedding of news quotes. In addition, we implemented a classifier to classify whether the title quote *T* is contextomized or not using embedding obtained by QuoteCSE. 
 
-(수정 필요: 1. QuoteCSE에 대한 설명 2. 그것이 어떻게 Contextomized quote detection에 사용되는지. 설명은 논문에 적혀 있음. 그림도 넣을 것)
-
 ## Datasets
 
 ### Pretraining corpus
@@ -43,7 +41,6 @@ python train.py
 ```python
 python contextomized_quote_detection.py 
 ```
-(질문: QuoteCSE pretrained checkpoint를 제공하는지? 안 했다면 리포에 추가. HuggingFace Model Hub에도 올리기.)
 
 ## Reference
 
