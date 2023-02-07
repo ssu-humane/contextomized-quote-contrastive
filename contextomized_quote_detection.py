@@ -80,7 +80,7 @@ def main():
     classifier = nn.DataParallel(classifier)
     classifier = classifier.to(args.device)
     
-    optimizer = torch.optim.Adam(encoder.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
+    optimizer = torch.optim.Adam(classifier.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
     optimizer.zero_grad()
 
 
