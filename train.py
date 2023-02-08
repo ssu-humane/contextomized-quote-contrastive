@@ -1,5 +1,5 @@
-from transformers import BertModel
-from kobert_tokenizer import KoBERTTokenizer
+from kobert_transformers import get_kobert_model
+from kobert_transformers import get_tokenizer
 
 from sklearn.model_selection import train_test_split
 from tqdm.auto import tqdm
@@ -53,8 +53,8 @@ def main():
     args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     args.batch_size = args.batch_size * torch.cuda.device_count()
     
-    args.backbone_model = BertModel.from_pretrained('skt/kobert-base-v1')
-    args.tokenizer = KoBERTTokenizer.from_pretrained('skt/kobert-base-v1')
+    args.backbone_model = get_kobert_model()
+    args.tokenizer = get_tokenizer()
     loss_func = QuoteCSELoss(temperature=args.temperature, batch_size=args.batch_size)
     
     encoder = Encoder(args)
@@ -157,12 +157,10 @@ def main():
             print(str(epoch), 'th epoch, Avg Valid Loss: ', str(avg_valid_loss), 'd_iter:', d_iter)
 
             if epoch % 10 == 0:
-                MODEL_SAVE_PATH = args.MODEL_DIR + 'model_' + str(epoch) + '.bin'
+                MODEL_SAVE_PATH = args.MODEL_DIR + 'checkpoint_' + str(epoch) + '.bin'
                 torch.save(encoder.state_dict(), MODEL_SAVE_PATH)
 
-
-    torch.save(encoder.state_dict(), args.MODEL_DIR + 'QuoteCSE_model.bin')
-    torch.save(encoder, args.MODEL_DIR + 'QuoteCSE_entire_model.bin')
+    torch.save(encoder.state_dict(), args.MODEL_DIR + 'checkpoint.bin')
 
     # save loss
     df_loss = pd.DataFrame(loss_data, columns=('Epoch', 'Loss', 'Type', 'Time'))
