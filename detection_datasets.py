@@ -60,10 +60,10 @@ class Contextomized_Detection_Dataset(Dataset):
 def create_data_loader(args, df, shuffle, drop_last):
     cd = Contextomized_Detection_Dataset(
         args,
-        title_texts=df.title_quote.to_numpy(),
-        body_texts=df.sentence_quotes.to_numpy(),
+        title_texts=df.headline_quote.to_numpy(),
+        body_texts=df.body_quotes.to_numpy(),
         label = df.label.to_numpy(),
-        max_seq = max(df.sentence_quotes.apply(len).values),
+        max_seq = max(df.body_quotes.apply(len).values),
     )
   
     return DataLoader(
