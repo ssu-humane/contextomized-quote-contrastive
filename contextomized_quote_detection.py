@@ -62,6 +62,8 @@ def main():
     
     df = pd.read_pickle(args.DATA_DIR)
     df_train, df_test = train_test_split(df, test_size=0.2, random_state=args.split_seed, stratify=df['label'])
+    df_train = df_train.reset_index(drop=True)
+    df_test = df_test.reset_index(drop=True)
     
     ros = RandomOverSampler(random_state=args.seed)
     X_train, y_train = ros.fit_resample(X=df_train.loc[:, ['title_quote', 'sentence_quotes']].values, y=df_train['label'])
