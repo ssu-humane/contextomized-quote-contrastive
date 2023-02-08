@@ -9,7 +9,7 @@ We present QuoteCSE, a contrastive learning framework that represents the embedd
 ![image](https://user-images.githubusercontent.com/80903024/217503832-ef78155c-f4bc-4b51-bcee-5a32e02ddf60.png)
 QuoteCSE is a contrastive quote embedding framework that is designed based on journalism ethics. This figure is the central idea of QuoteCSE. QuoteCSE maximizes the semantic similarity between the headline quote and the matched quote in the body text while minimizing the similarity for other unmatched quotes in the same or other articles.
 
-We obtain embeddings of headline quote and body quotes from QuoteCSE. The headline quote embedding is **u** and the body quote embedding most similar to the **u** is **v**. To detect the contextomized quote, We implemented a binary MLP classifier with **u**, **v**, **|u-v|**, **u*v** as input.
+We obtain embeddings of headline quote and body quotes from QuoteCSE. The headline quote embedding is **u**, and the body quote embedding most similar to the **u** is **v**. To detect the contextomized quote, We implemented a binary MLP classifier with **u**, **v**, **|u-v|**, **u*v** as input.
 
 
 ## Datasets
