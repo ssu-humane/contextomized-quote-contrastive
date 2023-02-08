@@ -18,8 +18,9 @@ from utils import AverageMeter, set_seed
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import RandomOverSampler
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score, recall_score, precision_score
-from transformers import BertModel, AdamW, get_cosine_schedule_with_warmup
-from kobert_tokenizer import KoBERTTokenizer
+from transformers import AdamW, get_cosine_schedule_with_warmup
+from kobert_transformers import get_kobert_model
+from kobert_transformers import get_tokenizer
 
 
 def main():
@@ -40,8 +41,8 @@ def main():
     parser.add_argument("--epochs", default=10, type=int, help="epoch")    
     parser.add_argument("--schedule", default=True, type=bool, help="whether to use the scheduler or not")    
     
-    parser.add_argument("--DATA_DIR", default='./data/contextomized_detection_data.pkl', type=str, help="data for detecting contextomized quote") 
-    parser.add_argument("--MODEL_DIR", default='./model/QuoteCSE_model.bin', type=str, help="trained QuoteCSE model")
+    parser.add_argument("--DATA_DIR", default='./data/contextomized_quote.pkl', type=str, help="data to detect contextomized quote") 
+    parser.add_argument("--MODEL_DIR", default='./model/checkpoint.pt', type=str, help="pretrained QuoteCSE model")
     parser.add_argument("--MODEL_SAVE_DIR", default='./model/contextomized_detection/', type=str, help="where to save the finetuned model")
     
     args = parser.parse_args()
@@ -56,8 +57,8 @@ def main():
     args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     args.batch_size = args.batch_size * torch.cuda.device_count()
     
-    args.backbone_model = BertModel.from_pretrained('skt/kobert-base-v1')
-    args.tokenizer = KoBERTTokenizer.from_pretrained('skt/kobert-base-v1')
+    args.backbone_model = get_kobert_model()
+    args.tokenizer = get_tokenizer()
     
     df = pd.read_pickle(args.DATA_DIR)
     df_train, df_test = train_test_split(df, test_size=0.2, random_state=args.split_seed, stratify=df['label'])
@@ -149,9 +150,6 @@ def main():
 
             predictions = torch.stack(predictions).cpu().tolist()
             answers = torch.stack(answers).cpu().tolist()
-
-    torch.save(classifier.state_dict(), args.MODEL_SAVE_DIR + 'final_model.bin')
-    torch.save(classifier, args.MODEL_SAVE_DIR + 'final_entire_model.bin')
 
     print('accuracy:', accuracy_score(answers, predictions))
     print('f1:', f1_score(answers, predictions, average='binary'))
