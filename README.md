@@ -7,7 +7,7 @@ Let a given news article be *X:(T, B)*, where *T* is the news title, and *B* is 
 
 We present QuoteCSE, a contrastive learning framework that represents the embedding of news quotes. In addition, we implemented a classifier to classify whether the title quote *T* is contextomized or not using embedding obtained by QuoteCSE. 
 
-![sample](https://user-images.githubusercontent.com/80903024/217470210-4fd8aaf6-60e2-49c9-b181-50f388c0d758.PNG)
+![image](https://user-images.githubusercontent.com/80903024/217503698-7ddd8993-2646-4749-8e8c-1c80750c5d83.png)
 QuoteCSE is a contrastive quote embedding framework that is designed based on journalism ethics. This figure is the central idea of QuoteCSE. QuoteCSE maximizes the semantic similarity between the headline quote and the matched quote in the body text while minimizing the similarity for other unmatched quotes in the same or other articles.
 
 We obtain embeddings of headline quote and body quotes from QuoteCSE. The headline quote embedding is **u** and the body quote embedding most similar to the **u** is **v**. To detect the contextomized quote, We implemented a binary MLP classifier with **u**, **v**, **|u-v|**, **u*v** as input.
