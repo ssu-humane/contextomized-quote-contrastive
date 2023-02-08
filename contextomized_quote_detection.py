@@ -66,8 +66,8 @@ def main():
     df_test = df_test.reset_index(drop=True)
     
     ros = RandomOverSampler(random_state=args.seed)
-    X_train, y_train = ros.fit_resample(X=df_train.loc[:, ['title_quote', 'sentence_quotes']].values, y=df_train['label'])
-    df_train_ros = pd.DataFrame(X_train, columns=['title_quote', 'sentence_quotes'])
+    X_train, y_train = ros.fit_resample(X=df_train.loc[:, ['headline_quote', 'body_quotes']].values, y=df_train['label'])
+    df_train_ros = pd.DataFrame(X_train, columns=['headline_quote', 'body_quotes'])
     df_train_ros['label'] = y_train
     
  
