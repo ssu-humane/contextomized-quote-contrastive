@@ -43,7 +43,7 @@ python train.py
 ```
 You can obtain the pretrained QuoteCSE checkpoints [here](https://drive.google.com/drive/folders/1F-e4JXWI_EXpybJ86SfclCg9SV-mci1N?usp=sharing)
 
-### Detection model training based on the QuoteCSE embedding
+### QuoteCSE-based detection
 ```python
 python contextomized_quote_detection.py 
 ```
