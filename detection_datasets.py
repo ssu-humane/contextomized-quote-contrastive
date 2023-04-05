@@ -2,7 +2,7 @@ from torch.utils.data import Dataset, DataLoader, TensorDataset
 from tqdm.auto import tqdm
 import torch
 import numpy as np
-from utils import most_sim
+from util import most_sim
 
 class Contextomized_Detection_Dataset(Dataset):
     def __init__(self, args, title_texts, body_texts, label, max_seq=85):
