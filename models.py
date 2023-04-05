@@ -14,7 +14,6 @@ class Encoder(nn.Module):
     def forward(self, input_ids, attention_mask):
         output = self.encoder(input_ids=torch.tensor(input_ids), attention_mask=torch.tensor(attention_mask))
         embedding = output['pooler_output']
-
         return self.mlp_projection(embedding)
     
     
