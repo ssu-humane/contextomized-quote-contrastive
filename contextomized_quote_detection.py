@@ -42,7 +42,7 @@ def main():
     parser.add_argument("--schedule", default=True, type=bool, help="whether to use the scheduler or not")    
     
     parser.add_argument("--DATA_DIR", default='./data/contextomized_quote.pkl', type=str, help="data to detect contextomized quote") 
-    parser.add_argument("--MODEL_DIR", default='./model/paper_model.bin', type=str, help="pretrained QuoteCSE model")
+    parser.add_argument("--MODEL_DIR", default='./model/checkpoint.pt', type=str, help="pretrained QuoteCSE model")
     parser.add_argument("--MODEL_SAVE_DIR", default='./model/contextomized_detection/', type=str, help="fine-tuned QuoteCSE model")
     
     args = parser.parse_args()
