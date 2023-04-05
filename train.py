@@ -202,7 +202,7 @@ def main():
           if early_stopping.early_stop:
             break
 
-    torch.save(encoder.state_dict(), args.MODEL_DIR + 'checkpoint.pt')
+    torch.save(encoder.state_dict(), args.MODEL_DIR + 'checkpoint.bin')
 
     # save loss
     df_loss = pd.DataFrame(loss_data, columns=('Epoch', 'Loss', 'Type', 'Time'))
