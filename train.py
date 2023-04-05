@@ -110,10 +110,7 @@ def main():
 
         if epoch >= args.dynamic_epochs + args.static_epochs:
           break
-
-        print('epoch:', epoch, '  assignment:', args.assignment)
-        print()
-                  
+        
         losses = AverageMeter()
         valid_loss = []
         
