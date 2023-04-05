@@ -16,7 +16,8 @@ We obtain embeddings of headline quote and body quotes from QuoteCSE. The headli
 
 ### Pretraining corpus
 ```
-data/pretrain_data_sample.pkl
+data/modified_sample.pkl
+data/verbatim_sample.pkl
 ```
 We present a sampled dataset of unlabeled corpus used for the QuoteCSE pretraining. Each data instance consists of title quote, positive sample, and negative sample. The positive and negative samples were selected by SentenceBERT, and the assignments are updated during training.
 
