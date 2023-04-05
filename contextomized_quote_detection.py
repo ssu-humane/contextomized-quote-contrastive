@@ -13,7 +13,7 @@ from detection_datasets import(
 )
 
 from models import Encoder, Detection_Model
-from utils import AverageMeter, set_seed
+from util import AverageMeter, set_seed
 
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import RandomOverSampler
@@ -29,9 +29,9 @@ def main():
     # arguments
     parser.add_argument("--seed", default=0, type=int, help="set seed") 
     parser.add_argument("--split_seed", default=0, type=int, help="seed to split data") 
-    parser.add_argument("--batch_size", default=4, type=int, help="batch size")    
+    parser.add_argument("--batch_size", default=8, type=int, help="batch size")    
     parser.add_argument("--max_len", default=512, type=int, help="max length")     
-    parser.add_argument("--num_workers", default=16, type=int, help="number of workers")    
+    parser.add_argument("--num_workers", default=0, type=int, help="number of workers")    
     parser.add_argument("--dimension_size", default=768, type=int, help="dimension size") 
     parser.add_argument("--hidden_size", default=100, type=int, help="hidden size")    
     parser.add_argument("--classifier_input_size", default=100, type=int, help="input dimension size of classifier") 
@@ -42,15 +42,15 @@ def main():
     parser.add_argument("--schedule", default=True, type=bool, help="whether to use the scheduler or not")    
     
     parser.add_argument("--DATA_DIR", default='./data/contextomized_quote.pkl', type=str, help="data to detect contextomized quote") 
-    parser.add_argument("--MODEL_DIR", default='./model/checkpoint.pt', type=str, help="pretrained QuoteCSE model")
-    parser.add_argument("--MODEL_SAVE_DIR", default='./model/contextomized_detection/', type=str, help="where to save the finetuned model")
+    parser.add_argument("--MODEL_DIR", default='./model/paper_model.bin', type=str, help="pretrained QuoteCSE model")
+    parser.add_argument("--MODEL_SAVE_DIR", default='./model/contextomized_detection/', type=str, help="fine-tuned QuoteCSE model")
     
     args = parser.parse_args()
 
     if not os.path.exists(args.MODEL_SAVE_DIR):
         os.makedirs(args.MODEL_SAVE_DIR)
-        
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+    
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
     os.environ['WANDB_CONSOLE'] = 'off'
     set_seed(args.seed)
     
@@ -70,13 +70,11 @@ def main():
     df_train_ros = pd.DataFrame(X_train, columns=['headline_quote', 'body_quotes'])
     df_train_ros['label'] = y_train
     
- 
-    
     loss_func = nn.CrossEntropyLoss(reduction='mean')
     
     encoder = Encoder(args)
     encoder = nn.DataParallel(encoder)
-    encoder.load_state_dict(torch.load(args.MODEL_DIR))
+    encoder.load_state_dict(torch.load(args.MODEL_DIR)) 
     encoder = encoder.to(args.device)
 
     classifier = Detection_Model(2, args)
@@ -100,7 +98,7 @@ def main():
     
     print('Making Dataloader')
     train_data_loader = create_data_loader(args, df_train_ros, shuffle=True, drop_last=True)
-    test_data_loader = create_data_loader(args, df_test, shuffle=False, drop_last=True)
+    test_data_loader = create_data_loader(args, df_test, shuffle=False, drop_last=False)
 
     trainloader =  make_tensorloader(args, encoder, train_data_loader, train=True)
     testloader  = make_tensorloader(args, encoder, test_data_loader)
@@ -137,29 +135,35 @@ def main():
         loss_data.append([epoch, train_losses.avg, 'Train'])
 
 
-        tbar2 = tqdm(testloader)
-        classifier.eval()
-        with torch.no_grad():
-            predictions = []
-            answers = []
-            for embedding, label in tbar2:
-                out = classifier(embedding)
-                preds = torch.argmax(out,dim=1)
-                predictions.extend(preds)
-                answers.extend(label)
+    tbar2 = tqdm(testloader)
+    classifier.eval()
+    with torch.no_grad():
+        predictions = []
+        answers = []
+        for embedding, label in tbar2:
+            out = classifier(embedding)
+            preds = torch.argmax(out,dim=1)
+            predictions.extend(preds)
+            answers.extend(label)
 
-                del out, preds
+            del out, preds
 
-            predictions = torch.stack(predictions).cpu().tolist()
-            answers = torch.stack(answers).cpu().tolist()
+        predictions = torch.stack(predictions).cpu().tolist()
+        answers = torch.stack(answers).cpu().tolist()
 
-    print('accuracy:', accuracy_score(answers, predictions))
-    print('f1:', f1_score(answers, predictions, average='binary'))
-    print('precision:', precision_score(answers, predictions))
-    print('recall:', recall_score(answers, predictions))
-    print('auc:', roc_auc_score(answers, predictions))
+    accuracy = accuracy_score(answers, predictions)
+    f1 = f1_score(answers, predictions, average='binary')
+    precision = precision_score(answers, predictions)
+    recall = recall_score(answers, predictions)
+    auc = roc_auc_score(answers, predictions)  
     
-    
+    print('accuracy:', accuracy)
+    print('f1:', f1)
+    print('auc:', auc)
+    print('recall:', recall)
+    print('precision:', precision)
+
+
     
 if __name__ == "__main__":
     main()
