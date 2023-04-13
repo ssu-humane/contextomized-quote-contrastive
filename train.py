@@ -91,8 +91,8 @@ def main():
                                            drop_last = True)
     valid_data_loader = create_data_loader(args,
                                            df = valid_df, 
-                                           shuffle = True,
-                                           drop_last = True)
+                                           shuffle = False,
+                                           drop_last = False)
 
     
     early_stopping = EarlyStopping(patience = 3, verbose = True, path=args.MODEL_DIR + 'checkpoint_static_dynamic_early.bin')
