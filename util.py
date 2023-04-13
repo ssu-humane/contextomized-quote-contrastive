@@ -38,6 +38,38 @@ def set_seed(seed):
   
   
   
+# search positive sentence embedding
+# for downstream task (detecting contextomized quotes)  
+def most_sim(outs, batch_size, body_len, do_normalize=True):
+    # To find quote in body text that is the most closely the title quote
+    if do_normalize:
+        outs = F.normalize(outs, dim=1)
+    
+    title_embedding = outs[:batch_size]
+    sentences_embeddings = outs[batch_size:]
+    positive = []
+    
+    for b in range(len(body_len)):
+        i = body_len[b]
+        t_embedding = title_embedding[b]
+        s_embedding = sentences_embeddings[:i]
+        sentences_embeddings = sentences_embeddings[i:]    
+        
+        cos_scores = util.pytorch_cos_sim(t_embedding, s_embedding)[0]
+        cos_scores = cos_scores.cpu()
+
+        top_results = np.argpartition(-cos_scores, range(1))[0:1]
+        positive.append(s_embedding[top_results])    
+
+    positive = torch.cat(positive, dim=0)
+    
+    return title_embedding, positive      
+
+  
+    
+  
+# search positve index and negative index
+# for pretraining (dynamic)
 def search_pos_neg(outs, batch_size, body_len, do_normalize=True):
     # To find quote in body text that is the most closely the title quote
     if do_normalize:
@@ -58,6 +90,7 @@ def search_pos_neg(outs, batch_size, body_len, do_normalize=True):
         cos_scores = cos_scores.cpu().detach().numpy()
 
         top_results = np.argpartition(-cos_scores, range(1))[0:1]
+        
         positive.append(top_results[0])
         
         idx = [j for j in range(len(s_embedding))]
@@ -67,9 +100,8 @@ def search_pos_neg(outs, batch_size, body_len, do_normalize=True):
 
     return positive, negative  
   
-  
-  
-  
+
+    
   
 def make_pair(args, body, title_id, title_at, body_ids, body_atts, body_len, encoder, pos_idx=None, neg_idx=None):
   with torch.no_grad():
