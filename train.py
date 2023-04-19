@@ -71,9 +71,6 @@ def main():
     print('Making Dataloader')
     modified_df = pd.read_pickle(args.MODIFIED_DATA_PATH)
     verbatim_df = pd.read_pickle(args.VERBATIM_DATA_PATH)
-  
-    modified_df['title_quote'] = modified_df['title_quote'].map(lambda x:x[0])
-    verbatim_df['title_quote'] = verbatim_df['title_quote'].map(lambda x:x[0])
     
     train_modified_df, test_modified_df = train_test_split(modified_df, test_size=0.2, random_state=args.seed)
     valid_modified_df, test_modified_df = train_test_split(test_modified_df, test_size=0.5, random_state=args.seed)
