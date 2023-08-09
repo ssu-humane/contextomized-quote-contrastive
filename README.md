@@ -42,7 +42,7 @@ We introduce a dataset of 1,600 news articles for detecting contextomized news q
 ```python
 python train.py 
 ```
-You can obtain the pretrained QuoteCSE checkpoints [here](https://drive.google.com/drive/folders/1F-e4JXWI_EXpybJ86SfclCg9SV-mci1N?usp=sharing)
+You can obtain the pretrained QuoteCSE checkpoints [here](https://drive.google.com/drive/folders/1F-e4JXWI_EXpybJ86SfclCg9SV-mci1N?usp=sharing).
 
 ### QuoteCSE-based detection
 ```python
@@ -51,3 +51,14 @@ python contextomized_quote_detection.py
 
 ## Reference
 
+For more details and background about the task and method, please check [our paper](https://aclanthology.org/2023.findings-eacl.52.pdf).
+
+```bibtex
+@inproceedings{song2023detecting,
+  title={Detecting Contextomized Quotes in News Headlines by Contrastive Learning},
+  author={Song, Seonyeong and Song, Hyeonho and Park, Kunwoo and Han, Jiyoung and Cha, Meeyoung},
+  booktitle={Findings of the Association for Computational Linguistics: EACL 2023},
+  pages={685--692},
+  year={2023}
+}
+```
